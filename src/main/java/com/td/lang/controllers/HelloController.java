@@ -41,6 +41,6 @@ public class HelloController {
 
         wordService.saveWord(word);
 
-        return "hello-page";
+        return "redirect:";
     }
 }
