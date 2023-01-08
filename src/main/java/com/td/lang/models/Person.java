@@ -3,6 +3,7 @@ package com.td.lang.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,8 +21,8 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-//    @Column(name = "role")
-//    private String role;
+    @OneToMany(mappedBy = "person")
+    private List<Word> words;
 
     // Конструктор по умолчанию нужен для Spring
     public Person() {
@@ -55,20 +56,11 @@ public class Person {
         this.password = password;
     }
 
-//    public String getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
+    public List<Word> getWords() {
+        return words;
+    }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public void setWords(List<Word> words) {
+        this.words = words;
     }
 }

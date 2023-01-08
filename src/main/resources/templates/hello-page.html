@@ -3,15 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
-    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <!--    <link th:href="@{/styles/main.css}" rel="stylesheet"/>-->
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
 <body>
-Hello world!
 
+<!--<div id="addWord">-->
+<!--    <button type="button" onsubmit="return false;" onclick="showTextField()">Add new word</button>-->
+<!--</div>-->
+
+<form th:method="POST" th:action="@{/hello/addToDic}" th:object="${word}">
+    <div>
+        <label>
+        <textarea th:attr="name='originWord'"
+                  maxlength="300" placeholder="Origin"
+                  rows="3" required tabindex="1"></textarea>
+        </label>
+        <label>
+        <textarea th:attr="name='translatedWord'" maxlength="300" placeholder="Translation"
+                  rows="3" required tabindex="0"></textarea>
+        </label>
+        <input type="submit" value="Add">
+    </div>
+</form>
+
+<div th:each="word : ${word}">
+    <p th:text="
+    ${word.getOriginWord()} + ', ' +
+    ${word.getTranslatedWord()} + ', ' +
+    ${word.getLevel()} + ', ' +
+    ${word.getCreationTime()}">WORD</p>
+</div>
+
+<br/>
 <a href="/logout">Logout</a>
 <br/>
 
-<a href="" class="double-border-button" th:onclick="showAlert()">Button</a>
+<!--<a href="" class="double-border-button" th:onclick="showAlert()">Button</a>-->
 </body>
 </html>
