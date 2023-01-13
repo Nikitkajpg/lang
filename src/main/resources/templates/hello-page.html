@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
-    <!--    <link th:href="@{/styles/main.css}" rel="stylesheet"/>-->
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
 <body>
@@ -12,7 +12,7 @@
 <!--    <button type="button" onsubmit="return false;" onclick="showTextField()">Add new word</button>-->
 <!--</div>-->
 
-<form th:method="POST" th:action="@{/hello/addToDic}" th:object="${word}">
+<form th:method="POST" th:action="@{/hello/addWord}" th:object="${word}">
     <div>
         <label>
         <textarea th:attr="name='originWord'"
@@ -33,6 +33,9 @@
     ${word.getTranslatedWord()} + ', ' +
     ${word.getLevel()} + ', ' +
     ${word.getCreationTime()}">WORD</p>
+    <form th:method="delete" th:action="@{/hello/{id}(id=${word.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
 </div>
 
 <br/>

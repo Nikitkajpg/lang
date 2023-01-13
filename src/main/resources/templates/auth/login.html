@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
+    <link th:href="@{/styles/auth.css}" rel="stylesheet">
 </head>
 <body>
+<div class="login-box">
+    <h1 class="login-text">Login</h1>
 
-<form name="f" method="post" action="/process_login">
-    <label for="username">Введите имя пользователя: </label>
-    <input type="text" name="username" id="username">
-    <br>
-    <label for="password">Введите пароль: </label>
-    <input type="text" name="password" id="password">
-    <br>
-    <input type="submit" value="Login">
+    <form name="f" method="post" action="/process_login">
+        <label for="username"></label>
+        <input class="input-field-username" placeholder="Username..." type="text" name="username" id="username" autocomplete="off">
+        <br>
+        <label for="password"></label>
+        <input class="input-field-password" placeholder="Password..." type="password" name="password" id="password" autocomplete="off">
+        <br>
+        <input class="login-button" type="submit" value="Login">
 
-    <div th:if="${param.error}" style="color: red">
-        Неверные имя или пароль
-    </div>
-</form>
+        <div class="mistake" th:if="${param.error}">
+            Incorrect username or password
+        </div>
+    </form>
 
-<a href="/auth/registration">Register</a>
-
+    <a class="register-link" href="/auth/registration">Register</a>
+</div>
 </body>
 </html>

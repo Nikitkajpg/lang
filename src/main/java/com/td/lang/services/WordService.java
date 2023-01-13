@@ -36,4 +36,8 @@ public class WordService {
         word.setCreationTime(LocalDateTime.now());
         wordRepository.save(word);
     }
+
+    public void deleteWord(int id) {
+        wordRepository.deleteById(id);
+    }
 }
