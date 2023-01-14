@@ -37,6 +37,7 @@ public class WordService {
         wordRepository.save(word);
     }
 
+    @Transactional()
     public void deleteWord(int id) {
         wordRepository.deleteById(id);
     }
