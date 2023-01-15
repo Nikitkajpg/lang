@@ -1,6 +1,5 @@
 package com.td.lang.services;
 
-import com.td.lang.models.Person;
 import com.td.lang.models.Word;
 import com.td.lang.repositories.WordRepository;
 import com.td.lang.security.PersonDetails;
@@ -23,8 +22,8 @@ public class WordService {
         this.wordRepository = wordRepository;
     }
 
-    public List<Word> findAll() {
-        return wordRepository.findAll();
+    public List<Word> findById(int id) {
+        return wordRepository.findWordsByUserId(id);
     }
 
     @Transactional()

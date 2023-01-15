@@ -1,9 +1,12 @@
 package com.td.lang.controllers;
 
 import com.td.lang.models.Word;
+import com.td.lang.security.PersonDetails;
 import com.td.lang.services.WordService;
 import com.td.lang.util.WordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +28,10 @@ public class HelloController {
 
     @GetMapping()
     public String showMainPage(Model model) {
-        model.addAttribute("word", wordService.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) auth.getPrincipal();
+        model.addAttribute("username", personDetails.getPerson().getUsername());
+        model.addAttribute("word", wordService.findById(personDetails.getPerson().getId()));
         return "hello-page";
     }
 

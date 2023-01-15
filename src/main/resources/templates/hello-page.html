@@ -11,6 +11,7 @@
 <!--<div id="addWord">-->
 <!--    <button type="button" onsubmit="return false;" onclick="showTextField()">Add new word</button>-->
 <!--</div>-->
+<p th:text="${'Hello, ' + username}"></p>
 
 <form th:method="POST" th:action="@{/hello/addWord}" th:object="${word}">
     <div>
@@ -36,6 +37,10 @@
     <form th:method="delete" th:action="@{/hello/{id}(id=${word.getId()})}">
         <input type="submit" value="Delete"/>
     </form>
+    <input type="button" value="Edit">
+<!--    <form th:method="patch" th:action="@{/hello/{id}(id=${word.getId()})}">-->
+<!--        <input>-->
+<!--    </form>-->
 </div>
 
 <br/>
